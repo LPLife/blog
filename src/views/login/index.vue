@@ -137,25 +137,28 @@
         localStorage.setItem("password",this.loginForm.password);
         this.loading = true
         axios({
-          method: 'get',
+          method: 'POST',
           url: apipath.LOGIN,
-          params: {
+          data: {
             username: this.loginForm.username,
             password: this.loginForm.password
           },
         }).then(res => {
-          res = res.data;
-          this.loading = false
-            this.$store.dispatch('Login', this.loginForm).then(() => {
-              this.loading = false
-              this.$router.push({
-                path: this.redirect || '/'
-              })
-            }).catch(() => {
-              this.loading = false
-            })
+          console.log(res);
+
+          console.log('fdsfdf');
+          // this.loading = false
+          //   this.$store.dispatch('Login', this.loginForm).then(() => {
+          //     this.loading = false
+          //     this.$router.push({
+          //       path: this.redirect || '/'
+          //     })
+          //   }).catch(() => {
+          //     this.loading = false
+          //   })
         }).catch(err => {
-            return false
+          console.log('接口请求失败');
+          return false
         });
       },
     }
